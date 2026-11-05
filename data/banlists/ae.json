@@ -1,0 +1,28 @@
+{
+  "name": "Asian-English (AE) Limit Regulation",
+  "lastUpdated": "2026-11-03",
+  "banned": [
+    55144522,
+    79571449,
+    74191942,
+    83764718,
+    3395226,
+    42424242,
+    90844484,
+    42386471
+  ],
+  "limited": [
+    24224830,
+    65681982,
+    18144506,
+    88453933,
+    73628505,
+    21183353
+  ],
+  "semiLimited": [
+    23434538,
+    14558127,
+    91800273
+  ],
+  "notes": "Asian-English Limit Regulation applies to official Konami OCG Asian-English territory tournaments (Singapore, Malaysia, Philippines, Thailand, Indonesia, Taiwan, Hong Kong)."
+}

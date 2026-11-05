@@ -1,0 +1,25 @@
+node_modules
+dist
+.git
+.github
+test
+scripts
+*.tgz
+*.log
+
+# Runtime caches and generated artefacts (not needed in the image)
+data/cache
+data/market
+data/rulebook
+data/judge
+data/wiki
+data/ocgcore
+data/ocgcore-scripts
+data/card-scripts
+data/custom_cards
+data/deck_exports
+data/rendered_cards
+data/sliced_artworks
+data/archetype_studio
+data/test_output
+data/test_studio_output

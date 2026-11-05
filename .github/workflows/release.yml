@@ -1,0 +1,108 @@
+name: release
+
+# Manual or tag-triggered. Publishing is never automatic on a normal push.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and verify only (no npm publish)"
+        type: boolean
+        default: true
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write # required for npm provenance
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # npm provenance requires a public repository and an OIDC token. A private
+    # repo cannot produce an attestation, so the job stays skipped until the
+    # repository is public.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python deps
+        run: python -m pip install --quiet pillow reportlab python-docx pymupdf pypdf
+
+      - name: Install
+        run: npm ci
+
+      - name: Build and type check
+        run: |
+          npm run build
+          npx tsc --noEmit
+
+      - name: Bootstrap data
+        run: node dist/cli/index.js fetch-data
+
+      - name: Tests
+        run: npm test
+
+      - name: Documentation is current
+        run: npm run docs -- --check
+
+      - name: Package smoke
+        run: npm run test:pack
+
+      - name: Check whether this version is already on npm
+        id: npmcheck
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "yugioh-assistant-mcp@$VERSION" version >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::yugioh-assistant-mcp@$VERSION is already published; skipping."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check npm token
+        id: npmtoken
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::NPM_TOKEN is not configured; the package will not be published by this run."
+          fi
+
+      - name: Publish with provenance
+        if: ${{ (github.event_name == 'push' || inputs.dry_run == false) && steps.npmcheck.outputs.exists != 'true' && steps.npmtoken.outputs.present == 'true' }}
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "Version: $(node -p "require('./package.json').version")" >> "$GITHUB_STEP_SUMMARY"
+          echo "Provenance: ${{ github.event_name == 'push' || inputs.dry_run == false }}" >> "$GITHUB_STEP_SUMMARY"
+
+  skipped-private:
+    if: github.event.repository.private == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain
+        run: |
+          echo "Repository is private: npm provenance needs a public repo and OIDC." >> "$GITHUB_STEP_SUMMARY"
+          echo "Publish manually or make the repo public first." >> "$GITHUB_STEP_SUMMARY"

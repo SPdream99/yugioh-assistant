@@ -1,0 +1,397 @@
+{
+  "cases": [
+    {
+      "id": "negate-protected",
+      "description": "Card B negates Card A; Card C negates Card B, so the Fusion Summon goes through.",
+      "scenario": {
+        "name": "Card A vs Card B vs Card C",
+        "description": "Card B negates Card A; Card C negates Card B, so the Fusion Summon goes through.",
+        "handA": [
+          44362883,
+          24224830
+        ],
+        "handB": [
+          14558127
+        ],
+        "deckA": [
+          68468459,
+          97268402,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "deckB": [
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "extraA": [
+          87746184
+        ],
+        "decisions": [
+          {
+            "on": "idle",
+            "player": 0,
+            "action": "activate",
+            "card": 44362883
+          },
+          {
+            "on": "chain",
+            "player": 1,
+            "card": 14558127
+          },
+          {
+            "on": "chain",
+            "player": 0,
+            "card": 24224830
+          },
+          {
+            "on": "card",
+            "player": 0,
+            "cards": [
+              87746184
+            ]
+          },
+          {
+            "on": "card",
+            "player": 0,
+            "cards": [
+              68468459,
+              97268402
+            ]
+          }
+        ],
+        "expect": [
+          {
+            "kind": "chainLink",
+            "card": 44362883,
+            "link": 1
+          },
+          {
+            "kind": "chainLink",
+            "card": 14558127,
+            "link": 2
+          },
+          {
+            "kind": "chainLink",
+            "card": 24224830,
+            "link": 3
+          },
+          {
+            "kind": "banished",
+            "card": 14558127
+          },
+          {
+            "kind": "summoned",
+            "card": 87746184
+          }
+        ]
+      }
+    },
+    {
+      "id": "negate-unprotected",
+      "description": "Without Card C, Card B negates Card A and no Fusion Summon happens.",
+      "scenario": {
+        "name": "Card A vs Card B (no protection)",
+        "description": "Without Card C, Card B negates Card A and no Fusion Summon happens.",
+        "handA": [
+          44362883
+        ],
+        "handB": [
+          14558127
+        ],
+        "deckA": [
+          68468459,
+          97268402,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "deckB": [
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "extraA": [
+          87746184
+        ],
+        "decisions": [
+          {
+            "on": "idle",
+            "player": 0,
+            "action": "activate",
+            "card": 44362883
+          },
+          {
+            "on": "chain",
+            "player": 1,
+            "card": 14558127
+          }
+        ],
+        "expect": [
+          {
+            "kind": "chainLink",
+            "card": 14558127,
+            "link": 2
+          },
+          {
+            "kind": "notSummoned",
+            "card": 87746184
+          },
+          {
+            "kind": "toGrave",
+            "card": 14558127
+          }
+        ]
+      }
+    },
+    {
+      "id": "hopt-after-negate",
+      "description": "Card C negates the effect, not the activation, so the HOPT is consumed and a second Card B cannot be used.",
+      "scenario": {
+        "name": "Card C negates Card B's effect — hard once per turn",
+        "description": "Card C negates the effect, not the activation, so the HOPT is consumed and a second Card B cannot be used.",
+        "handA": [
+          55144522,
+          24224830
+        ],
+        "handB": [
+          14558127,
+          14558127
+        ],
+        "deckA": [
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "deckB": [
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "decisions": [
+          {
+            "on": "idle",
+            "player": 0,
+            "action": "activate",
+            "card": 55144522
+          },
+          {
+            "on": "chain",
+            "player": 1,
+            "card": 14558127
+          },
+          {
+            "on": "chain",
+            "player": 0,
+            "card": 24224830
+          }
+        ],
+        "expect": [
+          {
+            "kind": "activated",
+            "card": 14558127,
+            "times": 1
+          },
+          {
+            "kind": "size",
+            "player": 1,
+            "zone": "hand",
+            "equals": 1
+          },
+          {
+            "kind": "banished",
+            "card": 14558127
+          }
+        ]
+      }
+    },
+    {
+      "id": "draw-blocked",
+      "description": "Card B negates Card E's effect: no cards are drawn.",
+      "scenario": {
+        "name": "Card E vs Card B",
+        "description": "Card B negates Card E's effect: no cards are drawn.",
+        "handA": [
+          55144522
+        ],
+        "handB": [
+          14558127
+        ],
+        "deckA": [
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "deckB": [
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420,
+          46986420
+        ],
+        "decisions": [
+          {
+            "on": "idle",
+            "player": 0,
+            "action": "activate",
+            "card": 55144522
+          },
+          {
+            "on": "chain",
+            "player": 1,
+            "card": 14558127
+          }
+        ],
+        "expect": [
+          {
+            "kind": "chainLink",
+            "card": 55144522,
+            "link": 1
+          },
+          {
+            "kind": "chainLink",
+            "card": 14558127,
+            "link": 2
+          },
+          {
+            "kind": "size",
+            "player": 0,
+            "zone": "hand",
+            "equals": 0
+          }
+        ]
+      }
+    }
+  ]
+}

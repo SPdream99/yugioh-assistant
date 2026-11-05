@@ -1,0 +1,64 @@
+{
+ "groupId": 1,
+ "products": [
+  {
+   "productId": 1,
+   "name": "Alpha",
+   "url": "https://example.test/alpha",
+   "extendedData": [
+    {
+     "name": "Number",
+     "value": "TST-001"
+    },
+    {
+     "name": "Rarity",
+     "value": "Super Rare"
+    }
+   ]
+  },
+  {
+   "productId": 2,
+   "name": "Alpha (UR)",
+   "url": "https://example.test/alpha-ur",
+   "extendedData": [
+    {
+     "name": "Number",
+     "value": "TST-002"
+    },
+    {
+     "name": "Rarity",
+     "value": "Ultra Rare"
+    }
+   ]
+  },
+  {
+   "productId": 3,
+   "name": "Alpha (Secret Rare)",
+   "url": "https://example.test/alpha-scr",
+   "extendedData": [
+    {
+     "name": "Number",
+     "value": "TST-003"
+    },
+    {
+     "name": "Rarity",
+     "value": "Secret Rare"
+    }
+   ]
+  }
+ ],
+ "prices": [
+  {
+   "productId": 1,
+   "marketPrice": 1.5
+  },
+  {
+   "productId": 2,
+   "marketPrice": 2.5
+  },
+  {
+   "productId": 3,
+   "marketPrice": 6
+  }
+ ]
+}

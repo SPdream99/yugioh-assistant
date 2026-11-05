@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.spdream99/yugioh-assistant-mcp",
+  "title": "Yu-Gi-Oh! Assistant",
+  "description": "A tournament-grade Yu-Gi-Oh! judge, deck builder and market analyst for AI agents. Reads real ocgcore Lua scripts for rulings, builds banlist-legal decks for TCG, OCG, AE, Genesys and Master Duel, and prices cards across US/JP/AE markets. Beta: under active development, check for updates.",
+  "version": "0.9.4",
+  "websiteUrl": "https://www.npmjs.com/package/yugioh-assistant-mcp",
+  "repository": {
+    "url": "https://github.com/SPdream99/yugioh-assistant-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "yugioh-assistant-mcp",
+      "version": "0.9.4",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

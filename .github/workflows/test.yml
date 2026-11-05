@@ -1,0 +1,72 @@
+name: test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # Windows is not optional: the project spawns Python, writes PDFs/PNGs and
+    # handles Windows paths. Node 24 is the declared minimum in package.json.
+    # Node 22 is not supported: ocgcore-wasm needs JSPI.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [24, 26]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python deps (PDF, image and studio tools)
+        run: python -m pip install --quiet pillow reportlab python-docx pymupdf pypdf
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      # The suites need cards.cdb, the rulebook index and the judge corpus.
+      # They are third-party documents, so they are fetched here rather than
+      # committed to the repository.
+      - name: Bootstrap data
+        run: node dist/cli/index.js fetch-data
+
+      - name: Unit and end-to-end suites
+        run: npm test
+        env:
+          # Some suites exercise live sources (Konami, ProjectIgnis, Yugipedia,
+          # YGOPRODeck, YugiohMeta). They degrade to explicit "unavailable"
+          # assertions when a source is unreachable, so a flaky network cannot
+          # produce a false pass.
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Documentation is current
+        run: npm run docs -- --check
+
+      # One pack/install/handshake run is enough; doing it on all four jobs
+      # would only add npm registry time.
+      - name: Package install smoke (pack → install → MCP handshake)
+        if: runner.os == 'Linux' && matrix.node == 22
+        run: npm run test:pack

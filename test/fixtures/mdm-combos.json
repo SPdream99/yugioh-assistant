@@ -1,0 +1,37 @@
+[
+ {
+  "_id": "combo-a",
+  "title": "Combo A",
+  "deckType": {
+   "_id": "dt-a",
+   "name": "Archetype A"
+  },
+  "startingCards": [
+   {
+    "card": {
+     "name": "Alpha"
+    }
+   }
+  ],
+  "steps": [
+   {
+    "entries": [
+     {
+      "card": {
+       "name": "Alpha"
+      },
+      "label": "Summon"
+     },
+     {
+      "card": {
+       "name": "Beta"
+      },
+      "label": "Add to hand"
+     }
+    ]
+   }
+  ],
+  "notes": "Line A",
+  "upvotes": 3
+ }
+]

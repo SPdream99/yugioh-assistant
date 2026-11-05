@@ -1,0 +1,69 @@
+name: Bug report
+description: Something the server or CLI does wrong
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste deck lists or logs that contain personal paths or tokens.
+        For security issues use the private advisory flow in SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `ygo --version`
+      placeholder: "0.9.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - MCP server (a tool call)
+        - CLI (`ygo ...`)
+        - Install / client configuration
+        - Documentation
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Tool or command
+      placeholder: "ygo_market_query --intent movers"
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: What should have happened, and why (quote the tool output if relevant).
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: The error, the wrong answer, or the empty result.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Exact arguments or steps. Redact paths and tokens.
+      render: shell
+  - type: input
+    id: os
+    attributes:
+      label: OS and Node version
+      placeholder: "Windows 11, Node 22.11"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I ran `ygo doctor` and included anything it flagged.
+          required: true
+        - label: This is not a Yu-Gi-Oh! rules dispute (those belong to the head judge).
+          required: true

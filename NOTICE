@@ -1,0 +1,41 @@
+# NOTICE
+
+The source code in this repository is licensed **AGPL-3.0-only** (see `LICENSE`).
+That licence covers **the code only**. The material below remains the property of
+its respective owners and is **not** relicensed by the AGPL.
+
+## Third-party material
+
+1. **`data/templates/KDE_DeckList.pdf`** — Konami's official tournament deck
+   registration form. It is **not included in this repository or the npm package**.
+   `ygo fetch-data` downloads it from Konami on demand (or the user points
+   `YGO_KDE_TEMPLATE` at a local copy); it is used only to fill a blank form.
+2. **Procedure libraries** — the standard Fusion / Synchro / Xyz / Link procedures
+   from [ProjectIgnis/CardScripts](https://github.com/ProjectIgnis/CardScripts)
+   (GPL-3.0) are downloaded by `ygo fetch-data` into `data/ocgcore-scripts/`, not
+   bundled. They let generated scripts resolve `Duel.LoadScript("proc_*.lua")` in
+   YGO Omega and EDOPro.
+3. **`test/fixtures/`** — synthetic responses shaped like Yuyu-tei, Konami, TCGCSV,
+   TCGCorner, Format Library and Master Duel Meta payloads. They contain no
+   captured third-party content and no personal data; see `test/fixtures/README.md`.
+4. **Card names, card text, set names, rarities and card images** — owned by
+   Konami Digital Entertainment, Shueisha, TV Tokyo and Studio Dice. The server
+   references them for identification and analysis; images are linked, not
+   bundled.
+5. **Yugipedia text** — licensed **CC BY-SA 3.0** by its contributors. Wiki
+   answers carry the source URL and licence; downstream reuse must keep the same
+   licence.
+6. **Trademarks** — "Yu-Gi-Oh!", "Yu-Gi-Oh! TCG", "Master Duel", "Neuron" and
+   related marks belong to their owners. This project is not affiliated with,
+   endorsed by or sponsored by any of them.
+
+## Takedown
+
+This is a non-commercial fan utility. If you are a rights holder and believe
+this repository, its documentation or the published npm package infringes your
+rights, open an issue or a private security advisory on the repository. The
+maintainer will remove the repository and the npm package promptly, without
+requiring legal action.
+
+- Repository: <https://github.com/SPdream99/yugioh-assistant-mcp>
+- Private contact: <https://github.com/SPdream99/yugioh-assistant-mcp/security/advisories/new>

@@ -1,0 +1,90 @@
+{
+  "name": "yugioh-assistant-mcp",
+  "version": "0.9.4",
+  "description": "MCP server + CLI that gives any AI agent a tournament-grade Yu-Gi-Oh! judge, deck builder and market analyst. Beta: under active development, check for updates.",
+  "type": "module",
+  "main": "dist/index.js",
+  "mcpName": "io.github.spdream99/yugioh-assistant-mcp",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SPdream99/yugioh-assistant-mcp.git"
+  },
+  "homepage": "https://github.com/SPdream99/yugioh-assistant-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/SPdream99/yugioh-assistant-mcp/issues"
+  },
+  "bin": {
+    "ygo": "dist/cli/index.js",
+    "yugioh-assistant-mcp": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "!dist/test_*.js",
+    "!dist/**/test_*.js",
+    "src/core/**/*.py",
+    "!src/core/**/test_*.py",
+    "skills",
+    "server.json",
+    "README.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "NOTICE",
+    "docs"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "yugioh",
+    "yu-gi-oh",
+    "tcg",
+    "ocg",
+    "deck-builder",
+    "judge",
+    "banlist",
+    "ydk",
+    "ydke",
+    "ai-agent"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "cli": "node dist/cli/index.js",
+    "setup": "node dist/cli/index.js setup",
+    "mcp": "node dist/cli/index.js mcp",
+    "docs": "node dist/cli/index.js docs",
+    "docs:check": "node dist/cli/index.js docs --check",
+    "doctor": "node dist/cli/index.js doctor",
+    "test": "tsx src/test_e2e.ts && tsx src/core/http/test_http_client.ts && tsx src/test_parsers_fixtures.ts && tsx src/core/deck-tools/test_compare.ts && tsx src/test_security.ts && tsx src/core/pricing/test_market_query.ts && tsx src/core/pricing/test_printing_prices.ts && tsx src/core/deck-community/test_community.ts && tsx src/test_e2e_meta_batch.ts && tsx src/test_e2e_pdf_and_image.ts && tsx src/test_e2e_banlists_and_kde.ts && tsx src/test_e2e_rulebook.ts && tsx src/test_e2e_judge_corpus.ts && tsx src/test_e2e_wiki.ts && tsx src/test_e2e_scenarios.ts && tsx src/test_e2e_script_generation.ts && tsx src/test_e2e_integration.ts && tsx src/test_e2e_script_insights.ts && tsx src/test_e2e_advanced.ts && tsx src/test_e2e_meta_ai.ts && tsx src/test_regressions.ts",
+    "test:http": "tsx src/core/http/test_http_client.ts",
+    "test:fixtures": "tsx src/test_parsers_fixtures.ts",
+    "test:compare": "tsx src/core/deck-tools/test_compare.ts",
+    "test:security": "tsx src/test_security.ts",
+    "test:pack": "node scripts/pack-smoke.mjs",
+    "fixtures:refresh": "node scripts/make-fixtures.mjs",
+    "test:smoke": "tsx src/test_system_smoke.ts",
+    "test:golden": "tsx src/test_golden.ts",
+    "test:pdf-unicode": "python src/core/deck-export/test_kde_unicode.py"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "axios": "^1.7.9",
+    "luaparse": "^0.3.1",
+    "node-sqlite3-wasm": "^0.8.61",
+    "ocgcore-wasm": "^0.1.6",
+    "pdfjs-dist": "^6.5.438",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/luaparse": "^0.2.13",
+    "@types/node": "^22.13.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

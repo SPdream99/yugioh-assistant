@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "yugioh-assistant-mcp": {
+      "command": "node",
+      "args": ["<absolute-path-to-this-project>/dist/index.js"]
+    }
+  }
+}

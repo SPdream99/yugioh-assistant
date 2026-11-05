@@ -1,0 +1,16 @@
+{
+ "products": [
+  {
+   "title": "Alpha (TST-001)",
+   "price": "12.00",
+   "available": true,
+   "url": "/products/alpha"
+  },
+  {
+   "title": "Plush Toy",
+   "price": "9.99",
+   "available": true,
+   "url": "/products/plush"
+  }
+ ]
+}

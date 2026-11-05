@@ -1,0 +1,30 @@
+{
+  "name": "Genesys Format Limit Regulation",
+  "lastUpdated": "2026-11-03",
+  "banned": [
+    55144522,
+    79571449,
+    74191942,
+    82732705,
+    58851034,
+    91800273,
+    23434538,
+    3395226,
+    8251996,
+    27204311
+  ],
+  "limited": [
+    94145021,
+    24224830,
+    65681982,
+    18144506,
+    88453933,
+    44095762
+  ],
+  "semiLimited": [
+    14558127,
+    10045474,
+    24299458
+  ],
+  "notes": "Genesys Format promotes interactive, non-floodgate gameplay by banning lingering turn-enders (Maxx C, Shifter, Skill Drain, Vanity's, Nibiru) and limiting heavy board locks."
+}

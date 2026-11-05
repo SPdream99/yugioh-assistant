@@ -1,0 +1,33 @@
+[
+ {
+  "_id": "counter-a",
+  "author": {
+   "username": "fixture-user"
+  },
+  "deckType": {
+   "_id": "dt-a",
+   "name": "Archetype A"
+  },
+  "counterCards": [
+   {
+    "card": {
+     "name": "Beta"
+    },
+    "impact": "High"
+   }
+  ],
+  "chokepoints": [
+   {
+    "card": {
+     "name": "Alpha"
+    }
+   }
+  ],
+  "chokepointExplanation": "Stop Alpha.",
+  "explanation": "Use Beta.",
+  "upvotes": [
+   "user-1",
+   "user-2"
+  ]
+ }
+]
